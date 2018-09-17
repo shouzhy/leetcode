@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int minPathSum(vector<vector<int>>& grid) {
+        int i, j;
+        int n = grid.size();
+        int m = grid[0].size();
+        vector<vector<int>> out(n + 1, vector<int>(m + 1, INT_MAX));
+        for(i = 1; i <= n; i++){
+            for(j = 1; j <= m; j++){
+                if(i == 1 && j == 1) out[i][j] = grid[i - 1][j - 1];
+                else out[i][j] = min(out[i - 1][j], out[i][j - 1]) + grid[i - 1][j - 1];
+            }
+        }
+        return out[n][m];
+    }
+};
